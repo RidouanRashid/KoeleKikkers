@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Love Calculator ❤️</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="https://cdn.pixabay.com/photo/2016/02/04/11/57/heart-1179054_1280.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
     <div class="container">
-        <h1>Love Calculator ❤️</h1>
-        <p>Enter two names to calculate your love percentage!</p>
-        <input type="text" id="name1" placeholder="Your Name">
-        <input type="text" id="name2" placeholder="Crush's Name">
-        <button onclick="calculateLove()">Calculate Love 💕</button>
-        <h2 id="result"></h2>
+      <h1>Love Calculator ❤️</h1>
+      <p>Enter two names to calculate your love percentage!</p>
+      <input type="text" id="name1" placeholder="Your Name" />
+      <input type="text" id="name2" placeholder="Crush's Name" />
+      <button onclick="calculateLove()">Calculate Love 💕</button>
+      <h2 id="result"></h2>
+    </div>
+    <div class="history">
+        <h2>History</h2>
+        <ul id="history"></ul>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
