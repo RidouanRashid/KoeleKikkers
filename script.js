@@ -3,7 +3,7 @@ function calculateLove() {
     let historyData = localStorage.getItem("historyData") === null ? [] : JSON.parse(localStorage.getItem("historyData"));
     let name1 = document.getElementById("name1").value.replace(/-/g, '').trim();
     let name2 = document.getElementById("name2").value.replace(/-/g, '').trim();
-    
+
     if (name1 === "" || name2 === "") {
         alert("Please enter both names!");
         return;
@@ -13,13 +13,14 @@ function calculateLove() {
     if (resultData[`${name1}-${name2}`] || resultData[`${name2}-${name1}`]) {
         percentage = resultData[`${name1}-${name2}`] != null ? resultData[`${name1}-${name2}`] : resultData[`${name2}-${name1}`];
         document.getElementById("result").innerText = `${name1} ❤️ ${name2} = ${resultData[`${name1}-${name2}`] != null ? resultData[`${name1}-${name2}`] : resultData[`${name2}-${name1}`]}% Love`;
-    }else{
+    } else {
         let lovePercentage = Math.floor(Math.random() * 101);
         percentage = lovePercentage;
         resultData[`${name1}-${name2}`] = lovePercentage;
-        document.getElementById("result").innerText = `${name1} ❤️ ${name2} = ${lovePercentage}% Love`;
+        document.getElementById("result").innerText = ` ${lovePercentage}%`;
         localStorage.setItem("resultData", JSON.stringify(resultData));
     }
+    /*tekent het percentage op het beeld */
 
     let historyUl = document.getElementById("history");
     let li = document.createElement("li");
@@ -37,7 +38,7 @@ function calculateLove() {
     localStorage.setItem("historyData", JSON.stringify(historyData));
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     let historyData = localStorage.getItem("historyData") === null ? [] : JSON.parse(localStorage.getItem("historyData"));
     let historyUl = document.getElementById("history");
 
