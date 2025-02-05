@@ -1,31 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Love Calculator ❤️</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="icon"
-      href="https://cdn.pixabay.com/photo/2016/02/04/11/57/heart-1179054_1280.png"
-      type="image/x-icon"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Love Calculator ❤️</h1>
-      <p>Enter two names to calculate your love percentage!</p>
-      <input type="text" id="name1" placeholder="Your Name" />
-      <input type="text" id="name2" placeholder="Crush's Name" />
-      <button onclick="calculateLove()">Calculate Love 💕</button>
-      <h2 id="result"></h2>
-    </div>
-    <div class="history">
-        <h2>History</h2>
-        <ul id="history"></ul>
 
-        <div class="hart"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Calculator ❤️</title>
+  <link rel="stylesheet" href="styles.css?v=1.0" />
+  <link rel="icon" href="https://cdn.pixabay.com/photo/2016/02/04/11/57/heart-1179054_1280.png" type="image/x-icon" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Love Calculator ❤️</h1>
+    <p>Enter two names to calculate your love percentage!</p>
+    <div class="input-group">
+      <button class="color-switch" onclick="switchColor(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/2088/2088838.png" alt="Switch Color" />
+      </button>
+      <input type="text" id="name1" placeholder="Your Name" autocomplete="off" />
     </div>
-    <script src="script.js"></script>
-  </body>
+    <div class="input-group">
+      <button class="color-switch" onclick="switchColor(this)">
+        <img src="https://cdn-icons-png.flaticon.com/512/2088/2088838.png" alt="Switch Color" />
+      </button>
+      <input type="text" id="name2" placeholder="Crush's Name" autocomplete="off" />
+    </div>
+    <button onclick="calculateLove()">Calculate Love 💕</button>
+    <button onclick="resetHistory()">Reset History</button>
+    <div class="heart">
+      <svg class="heartSvg" viewBox="0 0 100 100">
+        <defs>
+          <clipPath id="heartClip">
+            <rect id="clipRect" x="10" y="90" width="80" height="0"></rect>
+          </clipPath>
+        </defs>
+  
+        <path d="M10,30
+                   A20,20 0 0,1 50,30
+                   A20,20 0 0,1 90,30
+                   Q90,60 50,90
+                   Q10,60 10,30 Z" fill="lightCoral" stroke="black" stroke-width="2" />
+  
+        <path id="redFill" d="M10,30
+                A20,20 0 0,1 50,30
+                A20,20 0 0,1 90,30
+                Q90,60 50,90
+                Q10,60 10,30 Z" fill="red" stroke="black" stroke-width="2" clip-path="url(#heartClip)" />
+
+       <text x="50" y="50" class="percentageText">0%</text>
+      </svg>
+    </div>
+    <h2 id="result"></h2>
+  </div>
+  <div class="history">
+    <h2>History</h2>
+    <ul id="history"></ul>
+  </div>
+  <div id="notifications-container"></div>
+  <script src="script.js?v=1.0"></script>
+</body>
 </html>

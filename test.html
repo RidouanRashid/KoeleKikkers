@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Hartje met geleidelijke opvulling</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      font-family: sans-serif;
+    }
+    svg {
+      width: 200px;
+      height: 200px;
+    }
+    input[type="range"] {
+      margin-top: 20px;
+      width: 200px;
+    }
+ 
+    #clipRect {
+      transition: y 0.3s ease, height 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 100 100">
+    <defs>
+      <clipPath id="heartClip">
+        <rect id="clipRect" x="10" y="90" width="80" height="0"></rect>
+      </clipPath>
+    </defs>
+    <path id="redFill" d="M10,30
+             A20,20 0 0,1 50,30
+             A20,20 0 0,1 90,30
+             Q90,60 50,90
+             Q10,60 10,30 Z"
+          fill="red" clip-path="url(#heartClip)" />
+    <!-- De zwarte border (bovenop) -->
+    <path d="M10,30
+             A20,20 0 0,1 50,30
+             A20,20 0 0,1 90,30
+             Q90,60 50,90
+             Q10,60 10,30 Z"
+          fill="none" stroke="black" stroke-width="2"/>
+  </svg>
+  <input type="range" id="fillRange" min="0" max="100" value="0">
+  <p>Opvulling: <span id="percentDisplay">0</span>%</p>
+ 
+  <script>
+    const slider = document.getElementById('fillRange');
+    const clipRect = document.getElementById('clipRect');
+    const percentDisplay = document.getElementById('percentDisplay');
+ 
+    // Voor deze hartvorm liggen de belangrijkste y-coördinaten:
+    // Bovenkant: y = 30 en onderkant: y = 90 (dus een hoogte van 60)
+    const heartTop = 10;
+    const heartBottom = 90;
+    const heartHeight = heartBottom - heartTop; // 60
+ 
+    slider.addEventListener('input', function() {
+      const percentage = parseInt(slider.value, 10);
+      percentDisplay.textContent = percentage;
+ 
+      // In plaats van een lineaire mapping gebruiken we hier een wortelfunctie.
+      // Bij een lineaire mapping zou bij bijvoorbeeld 90% de vulling 60*0.9 = 54 zijn,
+      // waardoor de bovenste 6 eenheden (y=30 tot y=36) leeg blijven.
+      // Met Math.sqrt() (wortel) vult de vulling de bovenkant al eerder.
+      const p = percentage / 100;
+      const fillHeight = heartHeight * Math.sqrt(p); // Niet-lineaire (wortel) mapping
+      const newY = heartBottom - fillHeight;
+      clipRect.setAttribute('y', newY);
+      clipRect.setAttribute('height', fillHeight);
+    });
+  </script>
+</body>
+</html>

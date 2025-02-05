@@ -4,18 +4,16 @@ body {
     background-color: #ffebf0;
     margin: 0;
     padding: 0;
+    background-image: url(https://img1.picmix.com/output/stamp/normal/9/9/4/3/1503499_8efaf.gif);
 }
 
 .container {
-        background: rgb(255, 255, 255);
-        width: 50%;
-        margin: 100px auto;
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        height: 500px;
-        overflow: auto;
-    
+    background: white;
+    width: 50%;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .history {
@@ -60,65 +58,84 @@ button:hover {
 
 #result {
     font-size: 24px;
-    color: #ffffff;
+    color: #ff4d6d;
     margin-top: 20px;
-    position: relative;
-    z-index: 9999;
-    top: 75px;
 }
 
-.hart {
-    background-color: red;
-    display: inline-block;
-    height: 100px;
-    width: 100px;
-    margin: 20px;
-    position: absolute;
-    bottom: 85px;
-    left: 48.5%;
-    transform: translateX(-50%) rotate(-45deg);
-    animation: heartbeat 1s infinite;
-    /* Toevoegen van de animatie */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.hart:before,
-.hart:after {
-    content: "";
-    background-color: red;
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    position: absolute;
+.input-group input {
+    margin-left: 10px;
+    flex: 1;
 }
 
-.hart:before {
-    top: -57px;
-    left: 0;
+.color-switch {
+    background-color: #008CBA; /* Initial color: Blue */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
-.hart:after {
-    left: 57px;
-    top: 0;
+.color-switch img {
+    width: 15px;
+    height: 15px;
 }
 
-@keyframes heartbeat {
-    0% {
-        transform: translateX(-50%) rotate(-45deg) scale(1);
-    }
+.color-switch.pink {
+    background-color: #ff69b4; /* Pink */
+}
 
-    25% {
-        transform: translateX(-50%) rotate(-45deg) scale(1.2);
-    }
+.input-group .color-switch:hover {
+    background-color: #008CBA; /* Change to desired hover color */
+}
 
-    50% {
-        transform: translateX(-50%) rotate(-45deg) scale(1);
-    }
+.heart {
+    margin-top: 10px;
+}
 
-    75% {
-        transform: translateX(-50%) rotate(-45deg) scale(1.2);
-    }
+.heart .heartSvg{
+    width: 300px;
+}
 
-    100% {
-        transform: translateX(-50%) rotate(-45deg) scale(1);
-    }
+.heart .percentageText {
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: #ffff;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#clipRect {
+    transition: y 1s ease, height 1s ease;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+.notification.fade-out {
+    opacity: 0;
 }
