@@ -11,20 +11,20 @@ function calculateLove() {
 
     let percentage = 0;
     if (resultData[`${name1}-${name2}`] || resultData[`${name2}-${name1}`]) {
-        percentage = resultData[`${name1}-${name2}`] != null ? resultData[`${name1}-${name2}`] : resultData[`${name2}-${name1}`];
-        document.getElementById("result").innerText = `${name1} ❤️ ${name2} = ${resultData[`${name1}-${name2}`] != null ? resultData[`${name1}-${name2}`] : resultData[`${name2}-${name1}`]}% Love`;
+        //er is wel een combinatie gevonden van deze namen, dus lees deze uit de resultData variabele
+        percentage = resultData[`${name1}-${name2}`] != null ? resultData[`${name1}-${name2}`] : resultData[`${name2}-${name1}`]; //als de combi name1 - name2 opgeslagen is, gebruik die...anders gebruik de combi name2 - name1
+        document.getElementById("result").innerText = `${percentage}%`; //schrijf het percentage in het resultaat veld
     } else {
-        let lovePercentage = Math.floor(Math.random() * 101);
-        percentage = lovePercentage;
-        resultData[`${name1}-${name2}`] = lovePercentage;
-        document.getElementById("result").innerText = ` ${lovePercentage}%`;
-        localStorage.setItem("resultData", JSON.stringify(resultData));
+        //er is nog geen percentage berekend voor een combinatie van deze namen
+        percentage = Math.floor(Math.random() * 101); //bereken een nieuw percentage
+        resultData[`${name1}-${name2}`] = percentage; //sla het percentage op in de resultData
+        document.getElementById("result").innerText = `${percentage}%`; //schrijf het percentage in het resultaat veld
+        localStorage.setItem("resultData", JSON.stringify(resultData)); //save de resultData in de localStorage
     }
-    /*tekent het percentage op het beeld */
 
     let historyUl = document.getElementById("history");
     let li = document.createElement("li");
-    li.innerHTML = `<strong>${name1} ❤️ ${name2} = ${percentage}% Love</strong> <br> <small>${new Date().toLocaleString()}</small>`;
+    li.innerHTML = `<strong>${percentage}% Love</strong> <br> <small>${new Date().toLocaleString()}</small>`;
     historyUl.insertBefore(li, historyUl.firstChild);
 
     let addHistory = {
